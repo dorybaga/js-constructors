@@ -78,14 +78,27 @@ Spell.prototype.getDetails = function() {
  * @param {string} name         The spellcaster's name.
  * @param {number} health       The spellcaster's health points.
  * @param {number} mana         The spellcaster's mana points, used for casting spells.
+
  * @property {string} name
  * @property {number} health
  * @property {mana} mana
  * @property {boolean} isAlive  Default value should be `true`.
+
  * @method  inflictDamage
  * @method  spendMana
  * @method  invoke
  */
+
+ function Spellcaster(name, health, mana) {
+  this.name = name;
+  this.health = health;
+  this.mana = mana;
+  this.isAlive = true;
+ }
+
+ // Spellcaster.prototype
+
+
 
   /**
    * @method inflictDamage
