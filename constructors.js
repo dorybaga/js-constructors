@@ -5,6 +5,7 @@
  * @param {string} name         The name of the spell.
  * @param {number} cost         The amount needed to cast this spell.
  * @param {string} description  A short description of the spell.
+
  * @property {string} name
  * @property {number} cost
  * @property {string} description
@@ -17,16 +18,6 @@ function Spell(name, cost, description) {
   this.description = description;
 }
 
-Spell.prototype.getDetails = function() {
-  var spellDetails = this.name + " " + this.cost + " " + this.description;
-  // console.log(spellDetails);
-  // console.log(typeof spellDetails);
-  return spellDetails;
-};
-
-
-
-
   /**
    * Returns a string of all of the spell's details.
    * The format doesn't matter, as long as it contains the spell name, cost, and description.
@@ -34,6 +25,14 @@ Spell.prototype.getDetails = function() {
    * @name getDetails
    * @return {string} details containing all of the spells information.
    */
+
+
+Spell.prototype.getDetails = function() {
+  var spellDetails = this.name + " " + this.cost + " " + this.description;
+  // console.log(spellDetails);
+  // console.log(typeof spellDetails);
+  return spellDetails;
+};
 
 /**
  * A spell that deals damage.
@@ -54,11 +53,22 @@ Spell.prototype.getDetails = function() {
  * @param {number} cost         The amount needed to cast this spell.
  * @param {number} damage       The amount of damage this spell deals.
  * @param {string} description  A short description of the spell.
+
  * @property {string} name
  * @property {number} cost
  * @property {number} damage
  * @property {string} description
  */
+
+ function DamageSpell(name, cost, damage, description){
+  this.damage = damage;
+  Spell.call(this, name, cost, description);
+ }
+
+ DamageSpell.prototype = Object.create(Spell.prototype, {
+  constructor: DamageSpell
+ });
+
 
 /**
  * Now that you've created some spells, let's create
