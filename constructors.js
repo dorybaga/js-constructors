@@ -96,20 +96,33 @@ Spell.prototype.getDetails = function() {
   this.isAlive = true;
  }
 
- // Spellcaster.prototype
-
-
 
   /**
    * @method inflictDamage
    *
    * The spellcaster loses health equal to `damage`.
-   * Health should never be negative.
+
+   * Health should never be negative. *************
    * If the spellcaster's health drops to 0,
    * its `isAlive` property should be set to `false`.
    *
    * @param  {number} damage  Amount of damage to deal to the spellcaster
    */
+
+ Spellcaster.prototype.inflictDamage = function(damage) {
+  this.health = this.health - damage;
+
+  // should this be else if?? or a switch statement??
+  if (this.health < 0) {
+    this.health = 0;
+  }
+  if (this.health === 0){
+    this.isAlive = false;
+  }
+
+ };
+
+
 
   /**
    * @method spendMana
