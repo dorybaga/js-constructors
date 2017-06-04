@@ -110,7 +110,7 @@ Spell.prototype.getDetails = function() {
    */
 
  Spellcaster.prototype.inflictDamage = function(damage) {
-  this.health = this.health - damage;
+  this.health -= damage;
 
   // should this be else if?? or a switch statement??
   if (this.health < 0) {
@@ -122,8 +122,6 @@ Spell.prototype.getDetails = function() {
 
  };
 
-
-
   /**
    * @method spendMana
    *
@@ -133,6 +131,15 @@ Spell.prototype.getDetails = function() {
    * @param  {number} cost      The amount of mana to spend.
    * @return {boolean} success  Whether mana was successfully spent.
    */
+
+   Spellcaster.prototype.spendMana = function(cost) {
+    if (this.mana >= cost) {
+      this.mana -= cost;
+      return true;
+    } else {
+      return false;
+    }
+   };
 
   /**
    * @method invoke
