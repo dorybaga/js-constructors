@@ -168,25 +168,31 @@ Spell.prototype.getDetails = function() {
    * @return {boolean}                    Whether the spell was successfully cast.
    */
 
-
-   Spellcaster.prototype.invoke = function(spell, target){
-    if (spell instanceof Spell) {
-      if (this.mana >= spell.cost) {
-        this.spendMana(spell.cost);
-        // target.inflictDamage(spell.damage);
-        return true;
-      } else {
+Spellcaster.prototype.invoke = function(spell, target){
+  if (spell instanceof Spell) {
+    if (spell instanceof DamageSpell){
+      if (target instanceof Spellcaster){
+        if(this.mana >= spell.cost){
+          this.spendMana(spell.cost);
+          target.inflictDamage(spell.damage);
+          return true;
+        } else {
           return false;
         }
-    } else if (spell instanceof DamageSpell && target instanceof Spellcaster) {
-      if (this.mana >= spell.cost) {
-        this.spendMana(spell.cost);
-        target.inflictDamage(spell.damage);
-        return true;
-      } else {
-          return false;
-        }
-    } else {
+      } else{
         return false;
       }
-  };
+    } else{
+      if (this.mana >= spell.cost){
+        this.spendMana(spell.cost);
+        return true;
+      } else {
+        return false;
+      }
+    }
+  } else {
+    return false;
+  }
+};
+
+
